@@ -1,0 +1,145 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7osvgtr17ujn"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ky5x5"]
+[ext_resource type="Script" path="res://Player1.gd" id="2_dvxt5"]
+[ext_resource type="Script" path="res://Player2.gd" id="3_hylyb"]
+[ext_resource type="Script" path="res://Ball.gd" id="3_klecy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwpxg"]
+size = Vector2(20, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhomg"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1mvf"]
+size = Vector2(1920, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgl0"]
+size = Vector2(88, 1080)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ky5x5")
+
+[node name="Player1" type="StaticBody2D" parent="."]
+position = Vector2(120, 513)
+script = ExtResource("2_dvxt5")
+
+[node name="ColorRect" type="ColorRect" parent="Player1"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_uwpxg")
+
+[node name="Player2" type="StaticBody2D" parent="."]
+position = Vector2(1784, 511)
+script = ExtResource("3_hylyb")
+
+[node name="ColorRect" type="ColorRect" parent="Player2"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_uwpxg")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(640, 360)
+collision_mask = 3
+motion_mode = 1
+slide_on_ceiling = false
+wall_min_slide_angle = 1.44862
+safe_margin = 2.538
+script = ExtResource("3_klecy")
+
+[node name="ColorRect" type="ColorRect" parent="Ball"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.286275, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_uhomg")
+
+[node name="Borders" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, -33.5)
+shape = SubResource("RectangleShape2D_v1mvf")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders"]
+position = Vector2(963, 1112)
+shape = SubResource("RectangleShape2D_v1mvf")
+
+[node name="ScoringLeft" type="Area2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="ScoringLeft"]
+position = Vector2(-44, 540)
+shape = SubResource("RectangleShape2D_2dgl0")
+
+[node name="ScoringRight" type="Area2D" parent="."]
+
+[node name="right" type="CollisionShape2D" parent="ScoringRight"]
+position = Vector2(1968, 540)
+shape = SubResource("RectangleShape2D_2dgl0")
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Player1Score" type="Label" parent="Hud"]
+offset_left = 848.0
+offset_top = 80.0
+offset_right = 898.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player2Score" type="Label" parent="Hud"]
+offset_left = 1024.0
+offset_top = 80.0
+offset_right = 1074.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Hud"]
+offset_left = 336.0
+offset_top = 960.0
+offset_right = 1576.0
+offset_bottom = 1029.0
+theme_override_font_sizes/font_size = 27
+text = "ого это же П О Н Г"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="ScoringLeft" to="." method="_on_scoring_left_body_entered"]
+[connection signal="body_entered" from="ScoringRight" to="." method="_on_scoring_right_body_entered"]
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
