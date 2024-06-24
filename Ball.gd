@@ -5,7 +5,7 @@ const START_SPEED : int = 500
 const ACCEL : int = 50
 var speed : int
 var dir : Vector2
-const MAX_Y_VECTOR = 0.4
+const MAX_ANGLE_DIF = 60
 
 func _ready():
 	winSize = get_viewport_rect().size
@@ -26,21 +26,22 @@ func _physics_process(delta):
 	var collision = move_and_collide(dir * speed * delta)
 	var collider
 	if collision:
-		collider = collision.get_collider()
-		if collider in [$"../Player1", $"../Player2"]:
+		collider = collision.get_collider()	
+		if collider in [%Player1, %Player2]:
 			speed += ACCEL
 			dir = dir.bounce(collision.get_normal())
 		else:
 			dir = dir.bounce(collision.get_normal())
 
 func new_direction(collider):
-	var dist = position.y - collider.position.y
+	print(position.y)
+	print(collider.get_position().y)
+	var dist = (position.y - collider.get_position().y)/5
 	var new_dir := Vector2()
-	
-	if(dist > 0):
-		new_dir.x = -1
-	else:
-		new_dir.x = 1
-	new_dir.y = (dist / 60) * MAX_Y_VECTOR
-	return new_dir.normalized()
+	# determine angle
+	var angle = PI / 4 * dist - PI / 8
+	# determine vector
+	new_dir.x = cos(angle) * sign(dir.x) * -1
+	new_dir.y = sin(angle) * sign(dist)
+	return new_dir
 
