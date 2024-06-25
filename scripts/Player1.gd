@@ -5,7 +5,7 @@ var paddleHeight : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	winHeight = get_viewport_rect().size.y
+	winHeight = int(get_viewport_rect().size.y)
 	paddleHeight = $ColorRect.get_size().y
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,4 +15,4 @@ func _process(delta):
 	elif Input.is_action_pressed("ui_down"):
 		position.y += get_parent().PADDLE_SPEED * delta
 		 
-	position.y = clamp(position.y, paddleHeight / 2, winHeight - paddleHeight / 2)
+	position.y = clamp(position.y, paddleHeight / 2.0, winHeight - paddleHeight / 2.0)

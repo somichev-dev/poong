@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://c7osvgtr17ujn"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_ky5x5"]
-[ext_resource type="Script" path="res://Player1.gd" id="2_dvxt5"]
-[ext_resource type="Script" path="res://Player2.gd" id="3_hylyb"]
-[ext_resource type="Script" path="res://Ball.gd" id="3_klecy"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_ky5x5"]
+[ext_resource type="Script" path="res://scripts/Player1.gd" id="2_dvxt5"]
+[ext_resource type="Script" path="res://scripts/Player2.gd" id="3_hylyb"]
+[ext_resource type="Script" path="res://scripts/Ball.gd" id="3_klecy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwpxg"]
 size = Vector2(20, 120)
