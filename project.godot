@@ -12,9 +12,10 @@ config_version=5
 
 config/name="poong"
 config/description="pong"
-config/version="0.0.1"
-run/main_scene="res://main.tscn"
+config/version="0.0.2s"
+run/main_scene="res://title.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/show_image=false
 config/icon="res://images/icon.svg"
 
 [display]

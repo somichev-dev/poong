@@ -35,8 +35,6 @@ func _physics_process(delta):
 			dir = dir.bounce(collision.get_normal())
 
 func new_direction(collider):
-	print(position.y)
-	print(collider.get_position().y)
 	var dist_normalized = (position.y - collider.get_position().y) / MAX_ANGLE_DIST
 	var new_dir := Vector2()
 	# determine angle

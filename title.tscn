@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpru8ryaahdod"]
+
+[ext_resource type="Script" path="res://scripts/title/TitleText.gd" id="1_iryyb"]
+[ext_resource type="Script" path="res://scripts/title/SinglePlayer.gd" id="2_r370x"]
+[ext_resource type="Script" path="res://scripts/title/VersionLabel.gd" id="2_wpdy5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yor2t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_am6bu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b31yg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.237539, 0.237539, 0.237539, 1)
+
+[node name="TitleText" type="Button" parent="."]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 147.0
+offset_right = 1071.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yor2t")
+text = "poong"
+flat = true
+script = ExtResource("1_iryyb")
+
+[node name="ModeButtons" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -504.0
+offset_top = -164.0
+offset_right = 504.0
+offset_bottom = 436.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SinglePlayer" type="Button" parent="ModeButtons"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 119.0
+offset_right = 394.0
+offset_bottom = 482.0
+theme_override_font_sizes/font_size = 69
+theme_override_styles/focus = SubResource("StyleBoxEmpty_am6bu")
+text = "1 игрок"
+script = ExtResource("2_r370x")
+singleplayer_scene = "res://main.tscn"
+
+[node name="MultiPlayer" type="Button" parent="ModeButtons"]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 119.0
+offset_right = 912.0
+offset_bottom = 482.0
+theme_override_font_sizes/font_size = 69
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b31yg")
+disabled = true
+text = "2 игрока
+(скоро)"
+
+[node name="VersionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 984.0
+offset_right = 1029.0
+offset_bottom = 1070.0
+text = "версия 0.1.2.3.4.5.6"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wpdy5")
+
+[connection signal="pressed" from="TitleText" to="TitleText" method="_on_pressed"]
+[connection signal="pressed" from="ModeButtons/SinglePlayer" to="ModeButtons/SinglePlayer" method="_on_pressed"]

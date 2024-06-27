@@ -20,6 +20,11 @@ size = Vector2(88, 1080)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ky5x5")
 
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.125911, 0.125911, 0.125911, 1)
+
 [node name="Player1" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(120, 513)
@@ -95,7 +100,7 @@ position = Vector2(960, -33.5)
 shape = SubResource("RectangleShape2D_v1mvf")
 
 [node name="Bottom" type="CollisionShape2D" parent="Borders"]
-position = Vector2(963, 1112)
+position = Vector2(960, 1113)
 shape = SubResource("RectangleShape2D_v1mvf")
 
 [node name="ScoringLeft" type="Area2D" parent="."]
@@ -107,7 +112,7 @@ shape = SubResource("RectangleShape2D_2dgl0")
 [node name="ScoringRight" type="Area2D" parent="."]
 
 [node name="right" type="CollisionShape2D" parent="ScoringRight"]
-position = Vector2(1968, 540)
+position = Vector2(1964, 540)
 shape = SubResource("RectangleShape2D_2dgl0")
 
 [node name="Hud" type="CanvasLayer" parent="."]
