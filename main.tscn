@@ -66,7 +66,7 @@ position = Vector2(960, 540)
 collision_mask = 3
 motion_mode = 1
 slide_on_ceiling = false
-wall_min_slide_angle = 1.44862
+wall_min_slide_angle = 0.0
 safe_margin = 2.538
 script = ExtResource("3_klecy")
 
